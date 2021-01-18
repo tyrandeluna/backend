@@ -19,10 +19,10 @@ class RoomController {
    */
   async index ({ request }) {
     const { page, limit } = request.get()
-    // const query = Room.query()
-    // query.with('block')
+    const query = Room.query()
+    query.with('block')
 
-    return await Room.all();
+    return await query.paginate(page || 1, limit || 5)
   }
 
   /**
